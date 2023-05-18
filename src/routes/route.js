@@ -3,6 +3,7 @@ const { route } = require('express/lib/application');
 const router = express.Router();
 const commonFile = require('./common')
 const myUnderscore = require('underscore')
+const { getMovies, getMovieIndex, getFilmsById, getFilms } = require('../assignment/assignment')
 
 router.get('/test-me', function (req, res) {
     res.send('This should be working!')
@@ -20,6 +21,8 @@ router.get('/test-underscore', function(req, res){
     console.log('the result is',result)
     res.send('done')
 })
+
+
 
 router.get('/cohorts', function (request, response){
     // logic to get the cohorts from database
@@ -47,6 +50,12 @@ router.get('/students/:studentName', function(req, res) {
     //res.send({data: studentDetails})
     res.send('student data')
 })
+
+
+router.get('/Movies', getMovies)
+router.get('/Movies/:indexNumber', getMovieIndex)
+router.get('/films', getFilms)
+router.get('/films/:filmId', getFilmsById)
 
 
 module.exports = router;
