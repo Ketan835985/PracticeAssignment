@@ -11,11 +11,25 @@ const date = new Date();
 const month = ["jan", "feb", "mar", "apr", "may", "jun", "july","aug", "sep", "oct", "nov", "dec"]
 
 function printDate() {
-    console.log(month[date.getDate()]);
+    console.log(date.getDate())
+    console.log(date.toDateString())
+    console.log(date.toISOString())
+    console.log(date.toLocaleString())
+    console.log(date.toLocaleTimeString())
+    console.log(date.toLocaleDateString())
+    console.log(date.toString())
+ /*18
+Thu May 18 2023
+2023-05-18T11:58:08.632Z
+18/5/2023, 5:28:08 pm
+5:28:08 pm
+18/5/2023
+Thu May 18 2023 17:28:08 GMT+0530 (India Standard Time)
+*/
 }
 
 function printMonth() {
-    console.log(date.getMonth())
+    console.log(month[date.getMonth()]);
 }
 
 function getBatchInfo(batchName, week, day, topic) {
