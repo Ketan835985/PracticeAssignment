@@ -5,7 +5,7 @@ const checkUser = async (req, res, next) => {
         if(!req.headers) return res.status(400).send({ error: "provided headers are missing" })
         else{
             const token  = req.headers["x-auth-token"]
-            jwt.verify(token, "KeTan-Assignment")
+            const decodedToken = jwt.verify(token, "KeTan-Assignment")
             req.headers = token
             next()
         }
