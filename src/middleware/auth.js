@@ -1,12 +1,22 @@
-const authenticate = function(req, req, next) {
-    //check the token in request header
-    //validate this token
+const jwt = require('jsonwebtoken');
 
-    next()
+const authenticate = function(req, res, next) {
+    try {
+        if(!req.headers) return res.status(401).send({error: "please provide a header"})
+        else{
+            token = req.headers["x-auth-token"]
+            userId= req.params.userId
+            decodedToken = jwt.verify(token , "KeTan-TechneTium")
+            if(userId != decodedToken.userId) return res.status(401).send({error: "Unauthorized  user"})
+            req.userId = userId
+            next()
+        }
+        
+    } catch (error) {
+        res.status(400).send({ error : error.message })
+    }
+
 }
 
 
-const authorise = function(req, res, next) {
-    // comapre the logged in user's id and the id in request
-    next()
-}
+module.exports = {authenticate}
