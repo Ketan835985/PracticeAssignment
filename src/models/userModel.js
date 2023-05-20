@@ -27,7 +27,7 @@ module.exports = mongoose.model('AuthorizedUser', userSchema)
 /*
 Data
 database - sql vs No-sql : scalable, rationality,requires join, format store, rigid/flexibility, schema type,_id, examples
-mongoDb - open source Dod cloud database , schema less, no sql
+mongoDb - open source D-oriented database , schema less, no sql
 mongoose - odm module,
 datatypes - string, Number, array, object, boolean, mixed, ObjectId
 validation - unique, required , default
