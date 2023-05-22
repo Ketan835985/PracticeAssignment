@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const userModel = require("../models/userModel");
+const { SECRET_KEY } = require("../../config");
 
 // const createUser = async function (abcd, xyz) {
 //   //You can name the req, res objects anything.
@@ -140,7 +141,7 @@ const loginUser = async (req, res) => {
     else {
       const user = await userModel.findOne({ emailId: req.body.emailId, password: req.body.password })
       if (!user) return res.status(404).send({ error: "User not found" })
-      const token = jwt.sign({ userId: user._id, password: user.password }, process.env.SECRET_KEY)
+      const token = jwt.sign({ userId: user._id, password: user.password }, SECRET_KEY)
       res.status(200).send({ status: "success", token: token })
     }
   } catch (error) {

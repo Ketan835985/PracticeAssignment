@@ -1,12 +1,12 @@
 const jwt = require('jsonwebtoken');
-const {} = require('dotenv').config();
+const { SECRET_KEY } = require('../../config');
 const authenticate = function(req, res, next) {
     try {
         if(!req.headers) return res.status(401).send({error: "please provide a header"})
         else{
             token = req.headers["x-auth-token"]
             userId= req.params.userId
-            decodedToken = jwt.verify(token , process.env.SECRET_KEY)
+            decodedToken = jwt.verify(token , SECRET_KEY)
             if(userId != decodedToken.userId) return res.status(401).send({error: "Unauthorized  user"})
             req.userId = userId
             next()
