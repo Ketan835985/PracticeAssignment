@@ -3,12 +3,13 @@ const bodyParser = require('body-parser');
 const route = require('./routes/route.js');
 const { default: mongoose } = require('mongoose');
 const app = express();
+const { MONGOOSE_CONNECTION, PORT } = require('../config.js');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-mongoose.connect("mongodb+srv://Ketan_technetium_functionUp:iDikLHzqHJQQP656@clusterketantechnetium.pexlgni.mongodb.net/RevisionKetanGupta835985?retryWrites=true&w=majority", {
+mongoose.connect(MONGOOSE_CONNECTION, {
     useNewUrlParser: true
 })
 .then( () => console.log("MongoDb is connected"))
@@ -17,6 +18,6 @@ mongoose.connect("mongodb+srv://Ketan_technetium_functionUp:iDikLHzqHJQQP656@clu
 app.use('/', route);
 
 
-app.listen(process.env.PORT || 3000, function () {
-    console.log('Express app running on port ' + (process.env.PORT || 3000))
+app.listen(PORT, function () {
+    console.log('Express app running on port ' + (PORT))
 });
